@@ -4,3 +4,49 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+# Web server
+axum = { version = "0.8", features = ["macros"] }
+tokio = { version = "1", features = ["full"] }
+
+# Tower / middleware
+tower = "0.5"
+tower-http = { version = "0.6", features = [
+    "trace",
+    "compression-br",
+    "compression-gzip",
+    "set-header",
+    "fs"
+] }
+
+# Leptos SSR
+leptos = { version = "0.8", features = ["ssr"] }
+leptos_axum = { version = "0.8" }
+leptos_meta = { version = "0.8", features = ["ssr"] }
+leptos_router = { version = "0.8", features = ["ssr"] }
+
+# Database
+sqlx = { version = "0.8", default-features = false, features = [
+    "sqlite",
+    "runtime-tokio-rustls",
+    "macros",
+    "migrate",
+    "chrono"
+] }
+
+# Serialization / time
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+chrono = { version = "0.4", features = ["serde"] }
+
+# Caching (for 30s in-memory HTML/data cache)
+moka = { version = "0.12", features = ["future"] }
+
+# Logging / errors
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt"] }
+thiserror = "2"
+anyhow = "1"
+
+# Optional but usually handy
+uuid = { version = "1", features = ["v4", "serde"] }
+once_cell = "1"
